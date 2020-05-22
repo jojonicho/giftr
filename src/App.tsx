@@ -1,14 +1,20 @@
-import * as React from "react";
+import React from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import { reorderColors } from "./reorder";
 import { ColorMap } from "./types";
 import { AuthorList } from "./AuthorList";
 
-const App = () => {
+export const App: React.FC = () => {
   const [colorMap, setColors] = React.useState<ColorMap>({
-    a: ["blue", "red", "yellow"],
-    b: ["pink"],
-    c: ["green", "tan"]
+    a: [
+      "https://media1.tenor.com/images/ec86c1ad73bb36b8be28e1076f50afda/tenor.gif?itemid=17143662",
+    ],
+    b: [],
+    c: [],
+    unranked: [
+      "https://i.imgur.com/7vFufwh.gif",
+      "https://images-ext-1.discordapp.net/external/lrQxZenqKaNzirCWorykwK_fz76BiiH_ZzdLpeqbJLA/https/imgur.com/DBDBgGf.gif",
+    ],
   });
 
   return (
@@ -29,7 +35,7 @@ const App = () => {
             key={k}
             listId={k}
             listType="CARD"
-            colors={v}
+            urls={v}
           />
         ))}
       </div>
