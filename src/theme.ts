@@ -21,6 +21,16 @@ export const colors = {
   background: {
     light: "#3e5fbc",
     dark: "#284187",
+    dlight: "#2C3E50",
+    ddark: "#1C2833",
+  },
+  rainbow: {
+    o: "#ECF0F1",
+    s: "#F1C40F",
+    a: "#E74C3C",
+    b: "#2ECC71",
+    c: "#3498DB",
+    d: "#884EA0",
   },
 };
 
@@ -49,7 +59,7 @@ export const gradient = {
   // eslint-disable-next-line
   leftToRight: `linear-gradient(-45deg, ${colors.background.light} 0%, ${colors.background.dark} 100%)`,
   // eslint-disable-next-line
-  rightToLeft: `linear-gradient(45deg, ${colors.background.light} 0%, ${colors.background.dark} 100%)`,
+  rightToLeft: `linear-gradient(45deg, ${colors.background.dlight} 0%, ${colors.background.ddark} 100%)`,
 };
 
 export const transition = {

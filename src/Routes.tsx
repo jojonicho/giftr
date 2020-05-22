@@ -35,6 +35,7 @@ export const Routes: React.FC<RoutesProps> = () => {
           body {
             display: flex;
             flex-direction: column;
+            background: ${theme.colors.background.ddark};
           }
           h1 {
             font-family: ${theme.fontFamily.heading};
