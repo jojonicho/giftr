@@ -1,8 +1,9 @@
 import React from "react";
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
-import App from "./App";
-import { theme } from "./theme";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import App from "../App";
+import { theme } from "../utils/theme";
 import { css, Global, ThemeProvider } from "@emotion/react";
+import "typeface-overpass";
 
 interface RoutesProps {}
 
@@ -36,6 +37,7 @@ export const Routes: React.FC<RoutesProps> = () => {
             display: flex;
             flex-direction: column;
             background: ${theme.colors.background.ddark};
+            font-family: ${theme.fontFamily.body};
           }
           h1 {
             font-family: ${theme.fontFamily.heading};

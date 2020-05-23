@@ -59,7 +59,7 @@ export const gradient = {
   // eslint-disable-next-line
   leftToRight: `linear-gradient(-45deg, ${colors.background.light} 0%, ${colors.background.dark} 100%)`,
   // eslint-disable-next-line
-  rightToLeft: `linear-gradient(45deg, ${colors.background.dlight} 0%, ${colors.background.ddark} 100%)`,
+  rightToLeft: `linear-gradient(45deg, ${colors.background.dlight} 0%, ${colors.background.ddark} 150%)`,
 };
 
 export const transition = {
@@ -80,9 +80,9 @@ export const theme = {
   },
   fontFamily: {
     // eslint-disable-next-line
-    body: `Josefin Sans, Open Sans,-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'`,
+    body: `Overpass,-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'`,
     // eslint-disable-next-line
-    heading: `Josefin Sans, Candal, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'`,
+    heading: `Overpass, Candal, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'`,
   },
   layout: {
     article: "46rem",

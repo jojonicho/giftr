@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { Droppable, Draggable } from "react-beautiful-dnd";
+import { Row } from "../utils/types";
 
 interface Props {
-  urls: string[];
+  row: Row;
   listId: string;
   listType?: string;
   internalScroll?: boolean;
@@ -25,42 +26,53 @@ const Label = styled.div<LabelProps>`
   align-items: center;
   font-family: ${({ theme }) => theme.fontFamily.heading};
   border-radius: ${({ theme }) => theme.borderRadius.default};
-  // transform: translate(0, 100%);
+  @media (max-width: ${({ theme }) => theme.breakpoints.xs}) {
+    width: 20px;
+    height: 20px;
+  }
+  font-weight: bold;
 `;
-const Container = styled.div`
-  // display: flex;
-`;
-// const x = styled.div`
-// `
-const Wrapper = styled.div`
-  margin: 1vw;
-`;
+const Container = styled.div``;
 
 const Tier = styled.div`
-  // background: ${({ theme }) => theme.colors.secondary.base};
   background: ${({ theme }) => theme.gradient.rightToLeft};
   height: 100px;
   margin-bottom: 12.5px;
   display: flex;
   border-radius: ${({ theme }) => theme.borderRadius.default};
+  transition: ${({ theme }) => theme.transitions.boom.transition};
   img {
-    // width: calc(5vw + 40px);
+    transition: ${(props) => props.theme.transitions.boom.transition};
     margin: 0 4px 0 8px;
     height: 100px;
     width: 100px;
     border-radius: ${({ theme }) => theme.borderRadius.round};
-    box-shadow: ${({ theme }) => theme.shadow.image};
+    box-shadow: ${(props) => props.theme.shadow.feature.small.default};
+    &:hover {
+      box-shadow: ${(props) => props.theme.shadow.feature.small.hover};
+      transform: scale(1.1);
+    }
+  }
+  @media (max-width: ${({ theme }) => theme.breakpoints.xs}) {
+    height: 65px;
+    img {
+      margin: 0 2px 0 4px;
+      height: 65px;
+      width: 65px;
+      border-radius: ${({ theme }) => theme.borderRadius.round};
+      box-shadow: ${({ theme }) => theme.shadow.image};
+    }
   }
 `;
 
 export const TierList: React.FC<Props> = ({
   listId,
   listType,
-  urls,
+  row,
   bgColor,
 }) => {
   return (
-    <Wrapper>
+    <>
       {listId === "unranked" ? null : (
         <Label rank={bgColor}>{listId.toUpperCase()}</Label>
       )}
@@ -73,7 +85,7 @@ export const TierList: React.FC<Props> = ({
         {(dropProvided) => (
           <Container {...dropProvided.droppableProps}>
             <Tier ref={dropProvided.innerRef}>
-              {urls.map((url, index) => (
+              {row.urls.map((url, index) => (
                 <Draggable key={url} draggableId={url} index={index}>
                   {(dragProvided) => (
                     <div
@@ -91,6 +103,6 @@ export const TierList: React.FC<Props> = ({
           </Container>
         )}
       </Droppable>
-    </Wrapper>
+    </>
   );
 };
