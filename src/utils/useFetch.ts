@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { MyResponse, TenorData } from "./types";
+import "dotenv";
 
 export const useFetch = (url: string) => {
   const [state, setState] = useState<{
