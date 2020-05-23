@@ -36,25 +36,26 @@ const Container = styled.div``;
 
 const Tier = styled.div`
   background: ${({ theme }) => theme.gradient.rightToLeft};
-  height: 100px;
+  min-height: 100px;
   margin-bottom: 12.5px;
   display: flex;
   border-radius: ${({ theme }) => theme.borderRadius.default};
+  flex-wrap: wrap;
   transition: ${({ theme }) => theme.transitions.boom.transition};
   img {
-    transition: ${(props) => props.theme.transitions.boom.transition};
+    transition: ${({ theme }) => theme.transitions.boom.transition};
     margin: 0 4px 0 8px;
     height: 100px;
     width: 100px;
     border-radius: ${({ theme }) => theme.borderRadius.round};
-    box-shadow: ${(props) => props.theme.shadow.feature.small.default};
+    box-shadow: ${({ theme }) => theme.shadow.feature.small.default};
     &:hover {
-      box-shadow: ${(props) => props.theme.shadow.feature.small.hover};
+      box-shadow: ${({ theme }) => theme.shadow.feature.small.hover};
       transform: scale(1.1);
     }
   }
   @media (max-width: ${({ theme }) => theme.breakpoints.xs}) {
-    height: 65px;
+    min-height: 65px;
     img {
       margin: 0 2px 0 4px;
       height: 65px;

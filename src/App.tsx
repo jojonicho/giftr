@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import { reorderRows } from "./utils/reorder";
-import { RainbowMap, MyResponse } from "./utils/types";
+import { RainbowMap } from "./utils/types";
 import { TierList } from "./components/TierList";
 import styled from "@emotion/styled";
 import { useFetch } from "./utils/useFetch";
@@ -22,10 +22,20 @@ const Container = styled.div`
     border-radius: 2px;
     border: none;
     width: 50vw;
-    padding: calc(10px + 0.5vw);
+    padding: calc(10px + 0.25vw);
+    &:focus {
+      outline: 2px solid ${({ theme }) => theme.colors.secondary.base};
+    }
   }
+  text-align: center;
   height: 150px;
   transition: ${({ theme }) => theme.transitions.boom.transition};
+  @media (max-width: ${({ theme }) => theme.breakpoints.s}) {
+    font-size: 1rem;
+    input {
+      width: 75vw;
+    }
+  }
 `;
 
 const Wrapper = styled.div`
@@ -49,9 +59,7 @@ export const App: React.FC = () => {
     },
     {
       label: "s",
-      urls: [
-        "https://media1.tenor.com/images/ec86c1ad73bb36b8be28e1076f50afda/tenor.gif?itemid=17143662",
-      ],
+      urls: [],
     },
     {
       label: "a",
@@ -71,7 +79,9 @@ export const App: React.FC = () => {
     },
     {
       label: "unranked",
-      urls: [],
+      urls: [
+        "https://media1.tenor.com/images/ec86c1ad73bb36b8be28e1076f50afda/tenor.gif?itemid=17143662",
+      ],
     },
   ]);
   useEffect(() => {
@@ -83,12 +93,13 @@ export const App: React.FC = () => {
         urls: data,
       },
     ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);
 
   const [bgColorMap] = useState<RainbowMap>({
     o: "#ECF0F1",
-    s: "#F1C40F",
-    a: "#E74C3C",
+    s: "#E74C3C",
+    a: "#F1C40F",
     b: "#2ECC71",
     c: "#3498DB",
     d: "#884EA0",
@@ -131,15 +142,24 @@ export const App: React.FC = () => {
             placeholder="powered by tenor (min. 4 letters)"
           ></input>
         </form>
-        <Container>
-          {loading ? (
+        {loading ? (
+          <Container>
             <BarLoader />
-          ) : data !== null && query !== "" ? (
-            <>
-              <p>displaying results for: {query}</p>
-            </>
-          ) : null}
-        </Container>
+          </Container>
+        ) : data !== null && query !== "" ? (
+          <p>displaying results for: {query}</p>
+        ) : null}
+        {/* <button
+            onClick={() => {
+              html2canvas(document.querySelector("#capture") as any).then(
+                (canvas) => {
+                  document.body.appendChild(canvas);
+                }
+              );
+            }}
+          >
+            if i ever decide to add in image grabber
+          </button> */}
       </Container>
     </Wrapper>
   );
