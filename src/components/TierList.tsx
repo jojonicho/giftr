@@ -32,15 +32,20 @@ const Label = styled.div<LabelProps>`
   }
   font-weight: bold;
 `;
-const Container = styled.div``;
+const Container = styled.div`
+  div.unranked {
+    justify-content: center;
+    align-items: center;
+  }
+`;
 
 const Tier = styled.div`
   background: ${({ theme }) => theme.gradient.rightToLeft};
   min-height: 100px;
   margin-bottom: 12.5px;
   display: flex;
-  border-radius: ${({ theme }) => theme.borderRadius.default};
   flex-wrap: wrap;
+  border-radius: ${({ theme }) => theme.borderRadius.default};
   transition: ${({ theme }) => theme.transitions.boom.transition};
   img {
     transition: ${({ theme }) => theme.transitions.boom.transition};
@@ -85,7 +90,7 @@ export const TierList: React.FC<Props> = ({
       >
         {(dropProvided) => (
           <Container {...dropProvided.droppableProps}>
-            <Tier ref={dropProvided.innerRef}>
+            <Tier ref={dropProvided.innerRef} className={listId}>
               {row.urls.map((url, index) => (
                 <Draggable key={url} draggableId={url} index={index}>
                   {(dragProvided) => (

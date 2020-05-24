@@ -6,6 +6,7 @@ import { TierList } from "./components/TierList";
 import styled from "@emotion/styled";
 import { useFetch } from "./utils/useFetch";
 import BarLoader from "react-spinners/BarLoader";
+import { Helmet } from "react-helmet";
 
 const Container = styled.div`
   background: ${({ theme }) => theme.colors.background.dlight};
@@ -50,7 +51,7 @@ export const App: React.FC = () => {
   const [query, setQuery] = useState("ricardo");
   const { data, loading } = useFetch(
     // `https://api.giphy.com/v1/gifs/search?api_key=YAxFY6ZLyh7UdsekbTWbiWJCv2me8Vmi&q=${query}&limit=8&offset=0&rating=G&lang=en`
-    `https://api.tenor.com/v1/search?q=${query}&key=${process.env.REACT_APP_TENOR_API_KEY}&limit=5`
+    `https://api.tenor.com/v1/search?q=${query}&key=${process.env.REACT_APP_TENOR_API_KEY}&limit=6`
   );
   const [rows, setRows] = useState([
     {
@@ -108,6 +109,9 @@ export const App: React.FC = () => {
 
   return (
     <Wrapper>
+      <Helmet>
+        <title>Tierlist GIF Search Engine powered by Tenor</title>
+      </Helmet>
       <DragDropContext
         onDragEnd={({ destination, source }) => {
           // // dropped outside the list
