@@ -45,19 +45,19 @@ const Wrapper = styled.div`
     margin: 12.5px;
   }
   transition: ${({ theme }) => theme.transitions.boom.transition};
+  color: ${({ theme }) => theme.colors.white.base};
+  font-weight: bold;
 `;
 
 export const App: React.FC = () => {
-  const [query, setQuery] = useState("ricardo");
+  const [query, setQuery] = useState(
+    Math.floor(Math.random() * 2) ? "pink guy" : "ricardo"
+  );
   const { data, loading } = useFetch(
     // `https://api.giphy.com/v1/gifs/search?api_key=YAxFY6ZLyh7UdsekbTWbiWJCv2me8Vmi&q=${query}&limit=8&offset=0&rating=G&lang=en`
     `https://api.tenor.com/v1/search?q=${query}&key=${process.env.REACT_APP_TENOR_API_KEY}&limit=6`
   );
   const [rows, setRows] = useState([
-    {
-      label: "o",
-      urls: [],
-    },
     {
       label: "s",
       urls: [],
@@ -76,6 +76,10 @@ export const App: React.FC = () => {
     },
     {
       label: "d",
+      urls: [],
+    },
+    {
+      label: "e",
       urls: [],
     },
     {
@@ -98,20 +102,33 @@ export const App: React.FC = () => {
   }, [data]);
 
   const [bgColorMap] = useState<RainbowMap>({
-    o: "#ECF0F1",
     s: "#E74C3C",
-    a: "#F1C40F",
-    b: "#2ECC71",
-    c: "#3498DB",
-    d: "#884EA0",
+    a: "#E67E22",
+    b: "#F1C40F",
+    c: "#2ECC71",
+    d: "#3498DB",
+    e: "#884EA0",
     unranked: "#000000",
   });
 
   return (
     <Wrapper>
       <Helmet>
-        <title>Tierlist GIF Search Engine powered by Tenor</title>
+        <title>Giftr! Tier List Maker</title>
+        <meta name="Giftr! Tier List Maker" content="GIFS!" />
+        <meta name="keywords" content="tierlist,gif" />
+        <link rel="canonical" href="https://gift.jojonicho.wtf" />
+        <link
+          rel="apple-touch-icon"
+          href="http://mysite.com/img/apple-touch-icon-57x57.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          sizes="72x72"
+          href="http://mysite.com/img/apple-touch-icon-72x72.png"
+        />
       </Helmet>
+      <p>Giftr! Tier List Maker</p>
       <DragDropContext
         onDragEnd={({ destination, source }) => {
           // // dropped outside the list
@@ -131,7 +148,7 @@ export const App: React.FC = () => {
         ))}
       </DragDropContext>
       <Container>
-        Add your own!
+        SEARCH for a GIF and then DRAG it to a TIER!
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -151,7 +168,7 @@ export const App: React.FC = () => {
             <BarLoader />
           </Container>
         ) : data !== null && query !== "" ? (
-          <p>displaying results for: {query}</p>
+          <p>Displaying results for: {query}</p>
         ) : null}
         {/* <button
             onClick={() => {
